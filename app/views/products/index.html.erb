@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+
+<div class="fixed-action-btn">
+    <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_product_path, :class => "btn-floating pulse btn-large red" %>
+</div>
+
+<div class="row">
+  <!-- TODO: centrar el nombre en mobile (classics) y esto tambien -->
+  <% @products.each do |product| %>
+    <div class="col s8 m6 l4 offset-s2 ">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title"><%= product.name %></span>
+          <p class="grey-text"><%= product.owner.try(:username) || "NA" %></p>
+        </div>
+        <div class="card-tabs">
+          <ul class="tabs tabs-fixed-width">
+            <li class="tab"><a href=<%= "#purchase_date_#{product.id}" %>>Purch. date</a></li>
+            <li class="tab"><a href=<%= "#expiration_date_#{product.id}" %>>Exp. date</a></li>
+          </ul>
+        </div>
+        <div class="card-content grey lighten-4">
+          <div id=<%= "purchase_date_#{product.id}" %>><%= product.purchase_date %></div>
+          <div id=<%= "expiration_date_#{product.id}" %>><%= product.expiration_date %></div>
+        </div>
+        <div class="card-action center-align">
+          <%= link_to '<i class="material-icons light-blue-text text-darken-4">info_outline </i>'.html_safe, product %>
+          <%= link_to '<i class="material-icons light-blue-text text-darken-4">edit</i>'.html_safe, edit_product_path(product) %>
+          <%= link_to '<i class="material-icons light-blue-text text-darken-4">delete</i>'.html_safe, product, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

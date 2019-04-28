@@ -1,0 +1,42 @@
+<%= form_with(model: owner, local: true) do |form| %>
+  <% if owner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(owner.errors.count, "error") %> prohibited this owner from being saved:</h2>
+
+      <ul>
+        <% owner.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="fixed-action-btn">
+    <%= form.submit "OK", class: "btn-floating btn-large red"  %>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12 m6 offset-m3">
+      <% if owner.new_record? %>
+        <%= form.label :fname %>
+      <% else %>
+        <%= form.label :fname, class: "active" %>
+      <% end %>
+      <%= form.text_field :fname %>
+    </div>
+
+    <div class="input-field col s12 m6 offset-m3">
+      <% if owner.new_record? %>
+        <%= form.label :lname %>
+      <% else %>
+        <%= form.label :lname, class: "active" %>
+      <% end %>
+      <%= form.text_field :lname %>
+    </div>
+
+    <div class="input-field col s12 m6 offset-m3">
+      <%= form.label :username %>
+      <%= form.text_field :username %>
+    </div>
+  </div>
+<% end %>

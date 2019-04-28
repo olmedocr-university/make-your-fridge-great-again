@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MakeYourFridgeGreatAgain</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" data-mutate-approach="sync"></script>
+
+</head>
+
+<body>
+<%= render 'layouts/nav' %>
+
+<% if controller_name == 'pages' && action_name == 'index' %>
+  <main>
+    <%= yield %>
+  </main>
+<% else %>
+  <main class="container">
+    <%= yield %>
+  </main>
+<% end %>
+
+<br>
+
+<%= render 'layouts/footer' %>
+
+</body>
+</html>

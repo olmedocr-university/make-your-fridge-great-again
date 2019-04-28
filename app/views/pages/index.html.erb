@@ -1,0 +1,105 @@
+<% content_for :nav_content do %>
+  <!-- TODO: do this sticky (with pushpin) && scrollspy-->
+  <!-- TODO: add bar at bottom of tabs -->
+  <!-- TODO: add shadow like on the navbar -->
+  <div class="nav-content container">
+    <ul class="tabs">
+      <li class="tab">
+        <a class="active" href="#parallax1">Home</a>
+      </li>
+      <li class="tab">
+        <a href="#section1">Top functionalities</a>
+      </li>
+      <li class="tab">
+        <a href="#section2">Why?</a>
+      </li>
+      <!-- TODO: add ad the bottom a line to show the selected tab (like in a tab component) -->
+    </ul>
+  </div>
+<% end %>
+
+<div id="parallax1" class="parallax-container scrollspy">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br>
+      <br>
+      <h1 class="header center">MYFGA</h1>
+      <div class="row center">
+        <h5 class="header col s12">Make Your Fridge Great Again!</h5>
+      </div>
+      <div class="row center">
+        <a class="btn-large waves-effect waves-light light-blue darken-4" href=<%= owners_path %>>Get
+          Started</a>
+      </div>
+    </div>
+  </div>
+  <div class="parallax">
+    <img alt="Unsplashed background img 1" src=<%= image_url("background1.jpg") %>>
+  </div>
+</div>
+<div id="section1" class="scrollspy container">
+  <div class="section">
+    <!--   Icon Section   -->
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center light-blue-text text-darken-4">
+            <i class="material-icons">flash_on</i>
+          </h2>
+          <h5 class="center">Keep it clean</h5>
+          <p class="light">Go to the products section to see if there's something about to expire, maybe you want to prepare
+            that delicious meal again before it goes bad.</p>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center light-blue-text text-darken-4">
+            <i class="material-icons">group</i>
+          </h2>
+          <h5 class="center">Manage users</h5>
+          <p class="light">Get at a glance who bough what, just in case you have to throw it away.</p>
+          <p class="light"></p>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center light-blue-text text-darken-4">
+            <i class="material-icons">settings</i>
+          </h2>
+          <h5 class="center">Build your own solution</h5>
+          <p class="light">This web app provides an API to interact with the built in database and manage all products
+            and users.</p>
+          <p class="light">Visit the developers page and start building something cool today!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="parallax2" class="scrollspy parallax-container valign-wrapper">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <div class="row center">
+        <h5 class="header col s12 light">Because not all leftovers deserve to get thrown away</h5>
+      </div>
+    </div>
+  </div>
+  <div class="parallax">
+    <img alt="Unsplashed background img 2" src=<%= image_url("background2.jpg") %>>
+  </div>
+</div>
+<div id="section2" class="scrollspy container">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 center">
+        <h3>
+          <i class="mdi-content-send brown-text"></i>
+        </h3>
+        <h4>Why does this exist?</h4>
+        <p class="left-align light">One of the key parts in cooking rests in how much quantity do you make (we all have
+          done THAT amount of pasta). It's common to cook more than needed, maybe because of the followed recipe or a
+          last change of plans, either way you should be able to keep track of whats on your fridge, and when it's no
+          longer safe to consume. </p>
+      </div>
+    </div>
+  </div>
+</div>

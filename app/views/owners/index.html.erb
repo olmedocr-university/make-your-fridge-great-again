@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Owners</h1>
+
+<div class="fixed-action-btn">
+  <%= link_to '<i class="large material-icons">add</i>'.html_safe, new_owner_path, :class => "btn-floating pulse btn-large red" %>
+</div>
+
+<div class="row">
+  <!-- TODO: centrar el nombre en mobile (classics) y esto tambien -->
+  <% @owners.each do |owner| %>
+    <div class="col s10 m6 l4 offset-s1">
+      <div class="card">
+        <div class="card-image">
+          <img alt="placeholder" src=<%= image_url("Placeholder-Portrait.jpg") %>>
+        </div>
+        <div class="card-content">
+          <span class="card-title uppercase"><%= "#{owner.fname} #{owner.lname}" %></span>
+          <p class="grey-text"><%= "@#{owner.username}" %></p>
+        </div>
+        <div class="card-action center-align">
+          <%= link_to '<i class="material-icons light-blue-text text-darken-4">info_outline</i>'.html_safe, owner %>
+          <%= link_to '<i class="material-icons light-blue-text text-darken-4">edit</i>'.html_safe, edit_owner_path(owner) %>
+          <%= link_to '<i class="material-icons light-blue-text text-darken-4">delete</i>'.html_safe, owner, method: :delete, data: {confirm: 'Are you sure?'} %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<br>

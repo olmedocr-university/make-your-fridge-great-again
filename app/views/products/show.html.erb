@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<div class="fixed-action-btn">
+  <%= link_to '<i class="large material-icons">edit</i>'.html_safe, edit_product_path(@product), :class => "btn-floating btn-large red" %>
+</div>
+
+<div class="row">
+  <div class="col s10 m6 offset-s1 offset-m3">
+    <ul class="collection">
+      <li class="collection-item"><div>Product<span class="secondary-content"><%= @product.name %></span></div></li>
+      <li class="collection-item"><div>Owner<span class="secondary-content"><%= @product.owner.try(:username) || "NA" %></span></div></li>
+      <li class="collection-item"><div>Purchase date<span class="secondary-content"><%= @product.purchase_date %></span></div></li>
+      <li class="collection-item"><div>Expiration date<span class="secondary-content"><%= @product.expiration_date %></span></div></li>
+      <li class="collection-item"><div>Category<span class="secondary-content"><%= (@product.category.try(:title) || "NA") %></span></div></li>
+      <li class="collection-item"><div>Food<span class="secondary-content"><%= (@product.food.try(:title) || "NA") %></span></div></li>
+      <li class="collection-item"><div>Amount<span class="secondary-content"><%= @product.amount %></span></div></li>
+      <li class="collection-item"><div>Units<span class="secondary-content"><%= @product.units %></span></div></li>
+    </ul>
+  </div>
+</div>
+
+
+
+<%= link_to '<i class="material-icons">arrow_back</i>'.html_safe, products_path, class: 'btn' %>

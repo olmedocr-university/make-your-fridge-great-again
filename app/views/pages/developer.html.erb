@@ -1,0 +1,195 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Developer</h1>
+
+<h3>Endpoints</h3>
+<p> You can retrieve several things from the server by making a GET petition to the following endpoints (click to
+  reveal).
+  All responses from the server are in JSON.</p>
+
+<ul class="collapsible">
+  <li>
+    <div class="collapsible-header light-blue darken-4 white-text">Owners</div>
+    <div class="collapsible-body">
+      <ul>
+        <li>
+          <h5>Endpoint</h5>
+          <code><%= request.base_url %>/owners.json</code>
+          <h5>Example response</h5>
+          <pre><code>
+            [{
+                "id": 6,
+                "fname": "Raul",
+                "lname": "Olmedo",
+                "username": "olmedocr",
+                "url": "http://0.0.0.0:3000/owners/6.json"
+              },
+              {
+                "id": 8,
+                "fname": "Sergio",
+                "lname": "Cabañas",
+                "username": "cabanass",
+                "url": "http://0.0.0.0:3000/owners/8.json"
+              }]
+          </code></pre>
+        </li>
+        <li>
+          <h5>Endpoint</h5>
+          <code><%= request.base_url %>/owner/id.json</code>
+          <p>Query parameter: <code>id</code></p>
+          <h5>Example response</h5>
+          <pre><code>
+            {
+              "id": 6,
+              "fname": "Raul",
+              "lname": "Olmedo",
+              "username": "olmedocr",
+              "url": "http://0.0.0.0:3000/owners/6.json"
+            }
+          </code></pre>
+        </li>
+      </ul>
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header light-blue darken-4 white-text">Products</div>
+    <div class="collapsible-body">
+      <ul>
+        <li>
+          <h5>Endpoint</h5>
+          <code><%= request.base_url %>/products.json</code>
+          <h5>Example response</h5>
+          <pre><code>
+            [
+              {
+                "id": 6,
+                "name": "Domino's pizza",
+                "owner_id": 6,
+                "purchase_date": "2019-04-09",
+                "expiration_date": "2019-04-15",
+                "category_id": 9,
+                "food_id": 17,
+                "amount": 240,
+                "units": "gram",
+                "url": "http://0.0.0.0:3000/products/6.json"
+              },
+              {
+                "id": 9,
+                "name": "Stir fry noodles",
+                "owner_id": 6,
+                "purchase_date": "2019-04-24",
+                "expiration_date": "2019-04-28",
+                "category_id": 9,
+                "food_id": 17,
+                "amount": 240,
+                "units": "gram",
+                "url": "http://0.0.0.0:3000/products/6.json"
+              }
+            ]
+          </code></pre>
+        </li>
+        <li>
+          <h5>Endpoint</h5>
+          <code><%= request.base_url %>/product/id.json</code>
+          <p>Query parameter: <code>id</code></p>
+          <h5>Example response</h5>
+          <pre><code>
+            {
+                "id": 6,
+                "name": "Domino's pizza",
+                "owner_id": 6,
+                "purchase_date": "2019-04-09",
+                "expiration_date": "2019-04-15",
+                "category_id": 9,
+                "food_id": 17,
+                "amount": 240,
+                "units": "gram",
+                "url": "http://0.0.0.0:3000/products/6.json"
+            }
+          </code></pre>
+        </li>
+      </ul>
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header light-blue darken-4 white-text">Food categories (I)</div>
+    <div class="collapsible-body">
+      <ul>
+        <li>
+          <h5>Endpoint</h5>
+          <code><%= request.base_url %>/food_options.json</code>
+          <h5>Example response</h5>
+          <pre><code>
+            {
+              "1": "Salads",
+              "2": "Hot dogs",
+              "3": "Luncheon meat",
+              "4": "Bacon & Sausage",
+              "5": "Hamburger & Other Ground Meats",
+              "6": "Fresh Beef, Veal, Lamb & Pork",
+              "7": "Fresh Poultry",
+              "8": "Soups & Stews",
+              "9": "Leftovers"
+            }
+          </code></pre>
+        </li>
+      </ul>
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header light-blue darken-4 white-text">Food categories (II)</div>
+    <div class="collapsible-body">
+      <ul>
+        <li>
+          <h5>Endpoint</h5>
+          <code><%= request.base_url %>/food_options?category_id=id.json</code>
+          <p>Query parameter: <code>id</code></p>
+          <p>This parameter must match one of the ids in the previous food_options json response</p>
+          <h5>Example response</h5>
+          <pre><code>
+            {
+              "4": "opened package or deli sliced",
+              "5": "unopened package"
+            }
+          </code></pre>
+        </li>
+      </ul>
+    </div>
+  </li>
+</ul>
+
+<h3>How the food categories work?</h3>
+<p>The estimated expiry date can be computed by getting the category first and then query the server with that id to get
+  the list of foods under that category.</p>
+
+
+<h3>Where's the AJAX?</h3>
+<p>When a new product is created the food dropdown shows the 9 main categories, after selecting one the web app does an
+  AJAX request on itself to gather all the foods that are under that same category to finally display them as options on
+  the selector.</p>
+
+
+<h3>How to solve JQuery - Materialize - Turbolinks problem</h3>
+<p>After spending countless hours trying to make JavaScript/CoffeeScript work under Turbolinks, here's my solution to
+  add JavaScript code (with Materialize components) that gets executed every time the page is loaded. Since maybe
+  there's more people out there using Ruby on Rails with Materialize too, the following examples will show how to
+  initialize and destroy Materialized components, but this solution also applies to the use of JQuery under
+  Turbolinks.</p>
+<pre><code>
+$(document).on 'turbolinks:load', ->
+  # Setup sidenav
+  $('.sidenav').sidenav()
+
+  return
+
+$(document).on 'turbolinks:before-cache', ->
+  # Destroy sidenav
+  sidenav = $('.sidenav')
+  sidenavInstance = M.Sidenav.getInstance(sidenav)
+  sidenavInstance.destroy()
+
+  return
+</code></pre>
+<p>So what this CoffeeScript snippet does is set a listener for when turbolinks loads the page (what in vanilla HTML/JS
+  would be the 'onload' event of the window). The second part is only required while using Materialized component
+  system.</p>

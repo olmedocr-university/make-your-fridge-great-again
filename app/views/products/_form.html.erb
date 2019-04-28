@@ -1,0 +1,93 @@
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="fixed-action-btn">
+    <%= form.submit "OK", class: "btn-floating btn-large red"  %>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12 m6 l6">
+      <% if product.new_record? %>
+        <%= form.label :name %>
+      <% else %>
+        <%= form.label :name, class: "active" %>
+      <% end %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="input-field col s12 m6 l6">
+      <% if product.new_record? %>
+        <%= form.label :purchase_date %>
+      <% else %>
+        <%= form.label :purchase_date, class: "active" %>
+      <% end %>
+      <%= form.text_field :purchase_date, :class => "datepicker" %>
+    </div>
+
+    <div class="col s12 m6">
+      <%= form.label :owner_id %>
+      <%= form.select :owner_id, options_for_select(
+          Owner.all.collect {|owner| ["#{owner.username}", owner.id]},
+          selected: (product.owner ? product.owner.id : Owner.first.id)),
+                      {} %>
+    </div>
+
+    <div class="input-field col s12 m6">
+      <% if product.new_record? %>
+        <%= form.label :expiration_date %>
+      <% else %>
+        <%= form.label :expiration_date, class: "active" %>
+      <% end %>
+      <%= form.text_field :expiration_date, :class => "datepicker" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 l6">
+      <%= form.label :category_id %>
+      <%= form.select :category_id, options_for_select(
+          Category.all.collect {|category| ["#{category.title}", category.id]},
+          selected: (product.category ? product.category_id : Category.first.id)),
+                      {} %>
+    </div>
+
+    <div class="col s12 l6">
+      <%= form.label :food_id %>
+      <%= form.select :food_id, options_for_select(
+          Food.all.reject {|food| food.id != 1}.collect {|food| ["#{food.title}", food.id]},
+          selected: (product.food ? product.food_id : Food.first.id)),
+                      {} %>
+
+    </div>
+
+    <div class="input-field col s12 m6 l6">
+      <% if product.new_record? %>
+        <%= form.label :amount %>
+      <% else %>
+        <%= form.label :amount, class: "active" %>
+      <% end %>
+      <%= form.number_field :amount %>
+    </div>
+
+    <div class="col s12 m6 l6">
+      <% if product.new_record? %>
+        <%= form.label :units %>
+      <% else %>
+        <%= form.label :units, class: "active" %>
+      <% end %>
+      <%= form.select :units, @units.keys, selected: @product.units %>
+
+    </div>
+  </div>
+
+<% end %>
